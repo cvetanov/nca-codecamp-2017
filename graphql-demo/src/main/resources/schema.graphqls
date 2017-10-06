@@ -1,0 +1,20 @@
+type Task {
+    id: ID!
+    name: String!
+    description: String
+}
+
+type Project {
+    id: ID!
+    name: String!
+    description: String
+    tasks: [Task]
+}
+
+type Query {
+    tasks: [Task]
+}
+
+schema {
+    query: Query
+}
