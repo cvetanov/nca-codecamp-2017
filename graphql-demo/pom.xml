@@ -49,16 +49,19 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- GraphQL dependencies -->
 		<dependency>
-			<groupId>com.merapar</groupId>
+			<groupId>com.graphql-java</groupId>
 			<artifactId>graphql-spring-boot-starter</artifactId>
-			<version>1.0.2</version>
+			<version>3.9.2</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.graphql-java</groupId>
 			<artifactId>graphiql-spring-boot-starter</artifactId>
-			<version>3.6.0</version>
+			<version>3.9.2</version>
 		</dependency>
+		<!-- End GraphQL dependencies -->
 	</dependencies>
 
 	<build>
