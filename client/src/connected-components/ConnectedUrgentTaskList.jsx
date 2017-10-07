@@ -2,7 +2,7 @@ import React from 'react';
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 
-import Task from '../components/Task';
+import TaskList from '../components/TaskList';
 
 // TODO gcvetano 2017-10-07: replace with urgentTasks query when it is done
 const urgentTasksQuery = gql`{
@@ -13,17 +13,13 @@ const urgentTasksQuery = gql`{
     }
 }`;
 
-const UrgentTaskList = ({data}) => {
+const ConnectedUrgentTaskList = ({data}) => {
     const {loading, tasks} = data;
     if (loading) {
         return <div>Loading tasks...</div>;
     }
 
-    const renderedTasks = tasks.map(task => <Task key={task.id} name={task.name} description={task.description}/>);
-    return [
-        <h1 key="tasks-title">Urgent tasks</h1>,
-        ...renderedTasks
-    ]
+    return <TaskList title="Urgent Tasks" tasks={tasks}/>;
 };
 
-export default graphql(urgentTasksQuery)(UrgentTaskList);
+export default graphql(urgentTasksQuery)(ConnectedUrgentTaskList);

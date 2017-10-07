@@ -2,7 +2,7 @@ import React from 'react';
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 
-import Task from '../components/Task';
+import TaskList from '../components/Task';
 
 const tasksQuery = gql`{
     tasks {
@@ -12,17 +12,12 @@ const tasksQuery = gql`{
     }
 }`;
 
-const TaskList = ({data}) => {
+const ConnectedTaskList = ({data}) => {
     const {loading, tasks} = data;
     if (loading) {
         return <div>Loading tasks...</div>;
     }
-
-    const renderedTasks = tasks.map(task => <Task key={task.id} name={task.name} description={task.description}/>);
-    return [
-        <h1 key="tasks-title">All tasks:</h1>,
-        ...renderedTasks
-    ]
+    return <TaskList tasks={tasks}/>
 };
 
-export default graphql(tasksQuery)(TaskList);
+export default graphql(tasksQuery)(ConnectedTaskList);
