@@ -1,12 +1,13 @@
 package com.netcetera.codecamp.graphqldemo.type;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Project extends BaseType {
 
     private String name;
     private String description;
-    private List<Task> tasks;
+    private List<Task> tasks=new ArrayList<>();
 
     public String getName() {
         return name;

@@ -17,7 +17,7 @@ public class ProjectMapper {
                 .collect(Collectors.toList());
     }
 
-    private ProjectEntity mapToEntity(Project project) {
+    public ProjectEntity mapToEntity(Project project) {
 
         ProjectEntity projectEntity = new ProjectEntity();
         projectEntity.setId(project.getId());
@@ -34,7 +34,7 @@ public class ProjectMapper {
 
     }
 
-    private Project mapFromEntity(ProjectEntity projectEntity) {
+    public Project mapFromEntity(ProjectEntity projectEntity) {
         Project project = new Project();
         project.setId(projectEntity.getId());
         project.setName(projectEntity.getName());

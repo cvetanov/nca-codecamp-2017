@@ -30,9 +30,8 @@ public class TaskDatabaseService implements TaskService {
     }
 
     @Override
-    public Task getById() {
-        return null;
-    }
+    public Task getById(Long id) {
+    return taskMapper.mapFromEntity(taskRepository.findOne(id)) ;}
 
     @Override
     public Task save(Task task) {

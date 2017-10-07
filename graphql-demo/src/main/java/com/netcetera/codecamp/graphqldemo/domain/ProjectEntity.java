@@ -1,9 +1,6 @@
 package com.netcetera.codecamp.graphqldemo.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -15,6 +12,7 @@ public class ProjectEntity extends BaseEntity {
 
     @Column
     private String description;
+
 
     @OneToMany
     private List<TaskEntity> tasks;

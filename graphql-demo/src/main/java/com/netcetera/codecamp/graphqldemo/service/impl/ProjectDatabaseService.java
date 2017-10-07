@@ -30,13 +30,16 @@ public class ProjectDatabaseService implements ProjectService{
     }
 
     @Override
-    public Project getById() {
-        return null;
+    public Project getById(Long id) {
+        return projectMapper.mapFromEntity(projectRepository.findOne(id));
     }
 
     @Override
-    public Project save(Project task) {
-        return null;
+    public Project save(Project project)
+    {
+        final ProjectEntity projectEntity= projectMapper.mapToEntity(project);
+        final ProjectEntity savedProjectEntity= projectRepository.save(projectEntity);
+        return projectMapper.mapFromEntity(savedProjectEntity);
     }
 
     @Override
