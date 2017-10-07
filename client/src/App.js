@@ -4,6 +4,7 @@ import './App.css';
 
 import ProjectList from './containers/ProjectList';
 import TaskList from './containers/TaskList';
+import TaskInput from './containers/TaskInput';
 
 class App extends Component {
     render() {
@@ -16,6 +17,8 @@ class App extends Component {
                 <ProjectList/>
                 <hr/>
                 <TaskList/>
+                <hr/>
+                <TaskInput/>
             </div>
         );
     }
