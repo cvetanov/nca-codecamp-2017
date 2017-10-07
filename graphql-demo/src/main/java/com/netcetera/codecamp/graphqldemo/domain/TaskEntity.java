@@ -1,10 +1,9 @@
 package com.netcetera.codecamp.graphqldemo.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
+import com.netcetera.codecamp.graphqldemo.enumeration.Priority;
+import com.netcetera.codecamp.graphqldemo.enumeration.TaskStatus;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "TASK")
@@ -15,6 +14,13 @@ public class TaskEntity extends BaseEntity {
 
     @Column
     private String description;
+
+    @Enumerated(EnumType.STRING)
+    private Priority priority=Priority.PRIORITYDEFAULT;
+
+    @Enumerated(EnumType.STRING)
+    private TaskStatus taskStatus=TaskStatus.CREATED;
+
 
     @ManyToOne
     @JoinColumn(name = "project_id")
@@ -43,4 +49,21 @@ public class TaskEntity extends BaseEntity {
     public void setProject(ProjectEntity project) {
         this.project = project;
     }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    public TaskStatus getTaskStatus() {
+        return taskStatus;
+    }
+
+    public void setTaskStatus(TaskStatus taskStatus) {
+        this.taskStatus = taskStatus;
+    }
 }
+

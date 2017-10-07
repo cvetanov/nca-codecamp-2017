@@ -24,6 +24,8 @@ public class TaskMapper {
         taskEntity.setId(task.getId());
         taskEntity.setName(task.getName());
         taskEntity.setDescription(task.getDescription());
+        taskEntity.setPriority(task.getPriority());
+        taskEntity.setTaskStatus(task.getTaskStatus());
         return taskEntity;
     }
 
@@ -41,6 +43,8 @@ public class TaskMapper {
         task.setId(taskEntity.getId());
         task.setName(taskEntity.getName());
         task.setDescription(taskEntity.getDescription());
+        task.setPriority(taskEntity.getPriority());
+        task.setTaskStatus(taskEntity.getTaskStatus());
         return task;
     }
 

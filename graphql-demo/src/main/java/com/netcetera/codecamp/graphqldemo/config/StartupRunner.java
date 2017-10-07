@@ -14,7 +14,7 @@ public class StartupRunner implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        ProjectEntity projectEntity= new ProjectEntity();
+        ProjectEntity projectEntity = new ProjectEntity();
         projectEntity.setName("Default Project");
         projectEntity.setDescription("The tasks that do not have a defined project or the project is not set yet");
         projectRepository.save(projectEntity);

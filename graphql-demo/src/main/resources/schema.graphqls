@@ -2,6 +2,8 @@ type Task {
     id: ID!
     name: String!
     description: String
+    priority: Priority
+    taskStatus: TaskStatus
 }
 
 type Project {
@@ -14,6 +16,20 @@ type Project {
 input TaskInput {
     name: String!
     description: String
+    priority: Priority
+    taskStatus: TaskStatus
+}
+input TaskInputUpdatable {
+    id: ID!
+    name: String
+    description: String
+    priority: Priority
+    taskStatus: TaskStatus
+}
+input ProjectInputUpdatable {
+    id: ID!
+    name: String
+    description: String
 }
 
 input ProjectInput {
@@ -21,6 +37,7 @@ input ProjectInput {
     description: String
     tasks: [TaskInput]
 }
+
 
 type Query {
     projects: [Project]
@@ -30,11 +47,27 @@ type Query {
 type Mutation {
     addTask(task: TaskInput): Task
     addProject(project: ProjectInput): Project
-    addTaskToProject(task: TaskInput,id: Long): Project
+    addTaskToProject(task: TaskInput,projectId: Long): Project
+    updateTask(updatable: TaskInputUpdatable) : Task
+    updateProject(updatable: ProjectInputUpdatable) : Project
 }
 
+enum Priority{
+    PRIORITY1,
+    PRIORITY2,
+    PRIORITYDEFAULT,
+    DEADLINE
+}
 
+enum TaskStatus {
+    CREATED,
+    LINED_UP,
+    SCHEDULED,
+    COMPLETED,
+    ARCHIVED
+}
 schema {
     query: Query
     mutation: Mutation
 }
+

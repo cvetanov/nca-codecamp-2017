@@ -30,6 +30,7 @@ public class Mutation implements GraphQLMutationResolver {
     public Task addTask(Task task) {
 
         return taskService.save(task);
+
     }
 
     /**
@@ -52,5 +53,36 @@ public class Mutation implements GraphQLMutationResolver {
         Project project = projectService.getById(projectId);
         project.getTasks().add(task);
         return projectService.save(project);
+    }
+
+    public Task updateTask(Task updatable){
+        Task taskToUpdate = taskService.getById(updatable.getId());
+        if(updatable.getName()!=null){
+            taskToUpdate.setName(updatable.getName());
+        }
+        if(updatable.getDescription() != null){
+            taskToUpdate.setDescription(updatable.getDescription());
+        }
+        if(updatable.getPriority() != null){
+            taskToUpdate.setPriority(updatable.getPriority());
+        }
+        if(updatable.getTaskStatus() !=null){
+            taskToUpdate.setTaskStatus(updatable.getTaskStatus());
+        }
+
+        return taskService.save(taskToUpdate);
+    }
+
+    public Project updateProject(Project updatable){
+        Project projectToUpdate = projectService.getById(updatable.getId());
+        if(updatable.getName()!= null){
+            projectToUpdate.setName(updatable.getName());
+        }
+        if(updatable.getDescription()!=null){
+            projectToUpdate.setName(updatable.getDescription());
+        }
+
+
+        return projectService.save(projectToUpdate);
     }
 }
