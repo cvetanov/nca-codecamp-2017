@@ -13,6 +13,4 @@ target/
 *.iws
 *.iml
 *.ipr
-
-client/.idea/
-graphql-demo/.idea/
+.idea/
