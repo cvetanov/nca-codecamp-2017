@@ -13,6 +13,7 @@ type Project {
 
 type Query {
     tasks: [Task]
+    projects: [Project]
 }
 
 schema {
