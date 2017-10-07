@@ -1,9 +1,7 @@
 import React from 'react';
 import {graphql} from 'react-apollo';
-import {Route} from 'react-router-dom';
 
 import Project from '../components/Project';
-import ProjectDetails from '../components/ProjectDetails';
 import gql from 'graphql-tag';
 
 const projectsQuery = gql`{

@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter as Router} from 'react-router-dom'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
@@ -13,9 +16,13 @@ const networkInterface = createNetworkInterface({
 const client = new ApolloClient({networkInterface});
 
 const app = (
-    <ApolloProvider client={client}>
-        <App/>
-    </ApolloProvider>
+    <MuiThemeProvider>
+        <Router>
+            <ApolloProvider client={client}>
+                <App/>
+            </ApolloProvider>
+        </Router>
+    </MuiThemeProvider>
 );
 
 ReactDOM.render(app, document.getElementById('root'));
