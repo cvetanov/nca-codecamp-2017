@@ -3,9 +3,11 @@ package com.netcetera.codecamp.graphqldemo.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.List;
 
-@Entity(name = "PROJECT")
+@Entity
+@Table(name = "PROJECT")
 public class ProjectEntity extends BaseEntity {
 
     @Column

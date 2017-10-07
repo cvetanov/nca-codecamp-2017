@@ -36,7 +36,10 @@ public class TaskDatabaseService implements TaskService {
 
     @Override
     public Task save(Task task) {
-        return null;
+
+        final TaskEntity taskEntity = taskMapper.mapToEntity(task);
+        final TaskEntity savedTaskEntity = taskRepository.save(taskEntity);
+        return taskMapper.mapFromEntity(savedTaskEntity);
     }
 
     @Override

@@ -2,8 +2,10 @@ package com.netcetera.codecamp.graphqldemo.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
-@Entity(name = "TASK")
+@Entity
+@Table(name = "TASK")
 public class TaskEntity extends BaseEntity {
 
     @Column
