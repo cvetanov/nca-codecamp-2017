@@ -30,4 +30,6 @@ public class Query implements GraphQLQueryResolver {
     public List<Project> projects() {
         return projectService.getAll();
     }
+
+    public Project project(Long id) { return projectService.getById(id); }
 }

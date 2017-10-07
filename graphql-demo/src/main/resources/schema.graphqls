@@ -41,6 +41,7 @@ input ProjectInput {
 
 type Query {
     projects: [Project]
+    project(id: ID!): Project
     tasks: [Task]
 }
 
