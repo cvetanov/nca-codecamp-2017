@@ -8,7 +8,7 @@ public interface TaskService {
 
     List<Task> getAll();
 
-    Task getById();
+    Task getById(Long id);
 
     Task save(Task task);
 
