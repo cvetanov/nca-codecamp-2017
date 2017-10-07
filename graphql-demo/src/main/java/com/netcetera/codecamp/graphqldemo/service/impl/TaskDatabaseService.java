@@ -11,6 +11,7 @@ import com.netcetera.codecamp.graphqldemo.type.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -60,5 +61,10 @@ public class TaskDatabaseService implements TaskService {
     @Override
     public List<Task> getAllByStatus(TaskStatus taskStatus) {
         return taskMapper.mapFromEntities(taskRepository.findByTaskStatus(taskStatus));
+    }
+
+    @Override
+    public List<Task> getAllByDateScheduled(Date date) {
+        return taskMapper.mapFromEntities(taskRepository.findAllByDateScheduled(date));
     }
 }

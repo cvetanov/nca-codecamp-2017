@@ -2,7 +2,6 @@ package com.netcetera.codecamp.graphqldemo.domain;
 
 import com.netcetera.codecamp.graphqldemo.enumeration.Priority;
 import com.netcetera.codecamp.graphqldemo.enumeration.TaskStatus;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,7 +17,7 @@ public class TaskEntity extends BaseEntity {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    private Priority priority=Priority.PRIORITYDEFAULT;
+    private Priority priority=Priority.PRIORITY_DEFAULT;
 
     @Enumerated(EnumType.STRING)
     private TaskStatus taskStatus=TaskStatus.CREATED;

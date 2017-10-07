@@ -4,14 +4,17 @@ import com.netcetera.codecamp.graphqldemo.domain.TaskEntity;
 import com.netcetera.codecamp.graphqldemo.type.Task;
 import org.springframework.stereotype.Component;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
 public class TaskMapper {
 
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
     public List<TaskEntity> mapToEntities(List<Task> tasks) {
-
         return tasks
             .stream()
             .map(this::mapToEntity)
@@ -26,7 +29,13 @@ public class TaskMapper {
         taskEntity.setDescription(task.getDescription());
         taskEntity.setPriority(task.getPriority());
         taskEntity.setTaskStatus(task.getTaskStatus());
-        taskEntity.setDateScheduled(task.getDateScheduled());
+        try{
+            Date date = simpleDateFormat.parse(task.getDateScheduled());
+            taskEntity.setDateScheduled(date);
+        }
+        catch (ParseException p){
+            System.out.println(p.getMessage());
+        }
         return taskEntity;
     }
 
@@ -46,7 +55,8 @@ public class TaskMapper {
         task.setDescription(taskEntity.getDescription());
         task.setPriority(taskEntity.getPriority());
         task.setTaskStatus(taskEntity.getTaskStatus());
-        task.setDateScheduled(taskEntity.getDateScheduled());
+        String date = simpleDateFormat.format(taskEntity.getDateScheduled());
+        task.setDateScheduled(date);
         return task;
     }
 }

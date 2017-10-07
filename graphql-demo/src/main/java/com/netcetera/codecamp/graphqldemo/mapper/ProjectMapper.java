@@ -59,7 +59,6 @@ public class ProjectMapper {
 
         final List<Task> tasks = taskMapper.mapFromEntities(projectEntity.getTasks());
         project.setTasks(tasks);
-
         return project;
 
     }

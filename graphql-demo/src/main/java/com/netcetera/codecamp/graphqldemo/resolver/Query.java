@@ -9,6 +9,8 @@ import com.netcetera.codecamp.graphqldemo.type.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -35,4 +37,15 @@ public class Query implements GraphQLQueryResolver {
     public List<Task> linedUpTasks() {return taskService.getAllByStatus(TaskStatus.LINED_UP);}
 
     public Project project(Long id) { return projectService.getById(id); }
+
+    public List<Task> urgentTasks() {
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY,0);
+        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.SECOND,0);
+        calendar.set(Calendar.MILLISECOND,0);
+       return taskService.getAllByDateScheduled(calendar.getTime());
+    }
 }

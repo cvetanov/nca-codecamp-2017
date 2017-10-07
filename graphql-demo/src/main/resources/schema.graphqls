@@ -4,6 +4,7 @@ type Task {
     description: String
     priority: Priority
     taskStatus: TaskStatus
+    dateScheduled: String
 }
 
 type Project {
@@ -18,6 +19,7 @@ input TaskInput {
     description: String
     priority: Priority
     taskStatus: TaskStatus
+    dateScheduled: String
 }
 input TaskInputUpdatable {
     id: ID!
@@ -25,6 +27,7 @@ input TaskInputUpdatable {
     description: String
     priority: Priority
     taskStatus: TaskStatus
+    dateScheduled: String
 }
 input ProjectInputUpdatable {
     id: ID!
@@ -44,6 +47,7 @@ type Query {
     tasks : [Task]
     linedUpTasks: [Task]
     project(id: ID!): Project
+    urgentTasks : [Task]
 }
 
 type Mutation {
@@ -52,13 +56,12 @@ type Mutation {
     addTaskToProject(task: TaskInput,projectId: Long): Project
     updateTask(updatable: TaskInputUpdatable) : Task
     updateProject(updatable: ProjectInputUpdatable) : Project
-
 }
 
 enum Priority{
     PRIORITY1,
     PRIORITY2,
-    PRIORITYDEFAULT,
+    PRIORITY_DEFAULT,
     DEADLINE
 }
 
