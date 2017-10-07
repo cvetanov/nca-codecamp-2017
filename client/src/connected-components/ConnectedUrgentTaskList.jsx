@@ -4,22 +4,22 @@ import gql from 'graphql-tag';
 
 import TaskList from '../components/TaskList';
 
-// TODO gcvetano 2017-10-07: replace with urgentTasks query when it is done
 const urgentTasksQuery = gql`{
-    tasks {
+    urgentTasks {
         id,
         name,
-        description
+        description,
+        priority
     }
 }`;
 
 const ConnectedUrgentTaskList = ({data}) => {
-    const {loading, tasks} = data;
+    const {loading, urgentTasks} = data;
     if (loading) {
         return <div>Loading tasks...</div>;
     }
 
-    return <TaskList title="Urgent Tasks" tasks={tasks}/>;
+    return <TaskList title="Urgent Tasks" tasks={urgentTasks}/>;
 };
 
 export default graphql(urgentTasksQuery)(ConnectedUrgentTaskList);
