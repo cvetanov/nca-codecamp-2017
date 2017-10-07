@@ -48,6 +48,7 @@ type Query {
     linedUpTasks: [Task]
     project(id: ID!): Project
     urgentTasks : [Task]
+    task(id: ID!): Task
 }
 
 type Mutation {
