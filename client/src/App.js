@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import ProjectList from './containers/ProjectList';
+import TaskList from './containers/TaskList';
 
 class App extends Component {
     render() {
@@ -13,6 +14,8 @@ class App extends Component {
                     <h1 className="App-title">Welcome to React</h1>
                 </header>
                 <ProjectList/>
+                <hr/>
+                <TaskList/>
             </div>
         );
     }
