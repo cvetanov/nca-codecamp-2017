@@ -35,10 +35,9 @@ public class ProjectDatabaseService implements ProjectService{
     }
 
     @Override
-    public Project save(Project project)
-    {
-        final ProjectEntity projectEntity= projectMapper.mapToEntity(project);
-        final ProjectEntity savedProjectEntity= projectRepository.save(projectEntity);
+    public Project save(Project project) {
+        final ProjectEntity projectEntity = projectMapper.mapToEntity(project);
+        final ProjectEntity savedProjectEntity = projectRepository.save(projectEntity) ;
         return projectMapper.mapFromEntity(savedProjectEntity);
     }
 

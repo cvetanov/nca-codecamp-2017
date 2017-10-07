@@ -15,11 +15,12 @@ input TaskInput {
     name: String!
     description: String
 }
-input ProjectInput{
+
+input ProjectInput {
     name: String!
     description: String
+    tasks: [TaskInput]
 }
-
 
 type Query {
     projects: [Project]

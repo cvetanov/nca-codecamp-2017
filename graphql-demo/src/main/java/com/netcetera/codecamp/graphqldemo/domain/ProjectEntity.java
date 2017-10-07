@@ -13,8 +13,7 @@ public class ProjectEntity extends BaseEntity {
     @Column
     private String description;
 
-
-    @OneToMany
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<TaskEntity> tasks;
 
     public String getName() {
