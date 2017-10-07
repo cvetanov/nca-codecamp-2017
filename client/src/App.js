@@ -1,42 +1,29 @@
-import React, {Component} from 'react';
-import {
-    BrowserRouter as Router,
-    Route,
-    Link
-} from 'react-router-dom'
-import logo from './logo.svg';
+import React from 'react';
+import {Route} from 'react-router-dom'
+
+import Navigation from './containers/Navigation';
+
+import ProjectList from './connected-components/ProjectList';
+import TaskList from './connected-components/TaskList';
+import UrgentTaskList from './connected-components/UrgentTaskList';
+import ProjectDetails from './connected-components/ProjectDetails';
+import TaskDetails from './connected-components/TaskDetails';
+
 import './App.css';
 
-import ProjectList from './containers/ProjectList';
-import TaskList from './containers/TaskList';
-import ProjectDetails from './components/ProjectDetails';
+const App = () => {
+    return (
+        <div className="App">
+            <Navigation/>
+            <Route exact path="/" component={UrgentTaskList}/>
 
-class App extends Component {
-    render() {
-        return (
-            <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <h1 className="App-title">Welcome to React</h1>
-                </header>
-                <Router>
-                    <div>
-                        <nav>
-                            <ul>
-                                <li><Link to="/projects">Projects</Link></li>
-                                <li><Link to="/tasks">Tasks</Link></li>
-                            </ul>
-                        </nav>
+            <Route exact path="/projects" component={ProjectList}/>
+            <Route path="/projects/:id" component={ProjectDetails}/>
 
-                        <Route exact path="/" component={ProjectList}/>
-                        <Route exact path="/projects" component={ProjectList}/>
-                        <Route path="/projects/:id" component={ProjectDetails}/>
-                        <Route path="/tasks" component={TaskList}/>
-                    </div>
-                </Router>
-            </div>
-        );
-    }
-}
+            <Route exact path="/tasks" component={TaskList}/>
+            <Route path="/tasks/:id" component={TaskDetails}/>
+        </div>
+    );
+};
 
 export default App;

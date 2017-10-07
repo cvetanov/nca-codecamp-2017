@@ -2,7 +2,7 @@ import React from 'react';
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 
-import Task from './Task';
+import Task from '../components/Task';
 
 const ProjectDetails = ({data: {loading, project}}) => {
     if (loading) {
