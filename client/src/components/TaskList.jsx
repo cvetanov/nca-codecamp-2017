@@ -11,6 +11,7 @@ const TaskList = ({title = 'Tasks', tasks}) => [
             id={task.id}
             name={task.name}
             description={task.description}
+            priority={task.priority}
         />
     )
 ];

@@ -8,7 +8,8 @@ const tasksQuery = gql`{
     tasks {
         id,
         name,
-        description
+        description,
+        priority
     }
 }`;
 

@@ -3,7 +3,14 @@ import {Card, CardActions, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import {withRouter} from "react-router";
 
-class TaskList extends Component {
+const priorityToColorMap = {
+    DEADLINE: '#F00',
+    PRIORITY1: '#FF9800',
+    PRIORITY2: '#FFEB3B',
+    PRIORITY_DEFAULT: '#000'
+};
+
+class Task extends Component {
     constructor(props) {
         super(props);
         this.goToDetails = this.goToDetails.bind(this);
@@ -12,10 +19,10 @@ class TaskList extends Component {
     goToDetails = () => this.props.history.push(`/tasks/${this.props.id}`);
 
     render() {
-        const {name, description} = this.props;
+        const {name, description, priority} = this.props;
         return (
             <Card>
-                <CardTitle title={name}/>
+                <CardTitle title={name} titleColor={priorityToColorMap[priority]}/>
                 <CardText>
                     {description}
                 </CardText>
@@ -27,4 +34,4 @@ class TaskList extends Component {
     }
 }
 
-export default withRouter(TaskList);
+export default withRouter(Task);
