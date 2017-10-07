@@ -28,6 +28,7 @@ public class Mutation implements GraphQLMutationResolver {
      * @return the added task.
      */
     public Task addTask(Task task) {
+
         return taskService.save(task);
     }
 
@@ -47,7 +48,7 @@ public class Mutation implements GraphQLMutationResolver {
      * @return the project.
      */
     public Project addTaskToProject(Task task, Long projectId){
-        taskService.save(task);
+//        taskService.save(task);
         Project project = projectService.getById(projectId);
         project.getTasks().add(task);
         return projectService.save(project);

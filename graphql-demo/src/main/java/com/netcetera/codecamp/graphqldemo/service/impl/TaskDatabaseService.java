@@ -1,7 +1,9 @@
 package com.netcetera.codecamp.graphqldemo.service.impl;
 
+import com.netcetera.codecamp.graphqldemo.domain.ProjectEntity;
 import com.netcetera.codecamp.graphqldemo.domain.TaskEntity;
 import com.netcetera.codecamp.graphqldemo.mapper.TaskMapper;
+import com.netcetera.codecamp.graphqldemo.repository.ProjectRepository;
 import com.netcetera.codecamp.graphqldemo.repository.TaskRepository;
 import com.netcetera.codecamp.graphqldemo.service.TaskService;
 import com.netcetera.codecamp.graphqldemo.type.Task;
@@ -14,12 +16,16 @@ import java.util.List;
 public class TaskDatabaseService implements TaskService {
 
     private TaskMapper taskMapper;
+
     private TaskRepository taskRepository;
 
+    private ProjectRepository projectRepository;
+
     @Autowired
-    public TaskDatabaseService(TaskMapper taskMapper, TaskRepository taskRepository) {
+    public TaskDatabaseService(TaskMapper taskMapper, TaskRepository taskRepository,ProjectRepository projectRepository) {
         this.taskMapper = taskMapper;
         this.taskRepository = taskRepository;
+        this.projectRepository=projectRepository;
     }
 
     @Override
@@ -37,6 +43,10 @@ public class TaskDatabaseService implements TaskService {
     public Task save(Task task) {
 
         final TaskEntity taskEntity = taskMapper.mapToEntity(task);
+
+        ProjectEntity projectEntity = projectRepository.findOne(1L);
+        taskEntity.setProject(projectEntity);
+
         final TaskEntity savedTaskEntity = taskRepository.save(taskEntity);
         return taskMapper.mapFromEntity(savedTaskEntity);
     }

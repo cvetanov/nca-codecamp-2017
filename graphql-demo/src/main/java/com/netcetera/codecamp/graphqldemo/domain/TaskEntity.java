@@ -17,7 +17,7 @@ public class TaskEntity extends BaseEntity {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "project_id", nullable = false)
+    @JoinColumn(name = "project_id")
     private ProjectEntity project;
 
     public String getName() {
