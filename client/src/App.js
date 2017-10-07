@@ -3,11 +3,11 @@ import {Route} from 'react-router-dom'
 
 import Navigation from './containers/Navigation';
 
-import ProjectList from './connected-components/ProjectList';
-import TaskList from './connected-components/TaskList';
-import UrgentTaskList from './connected-components/UrgentTaskList';
-import ProjectDetails from './connected-components/ProjectDetails';
-import TaskDetails from './connected-components/TaskDetails';
+import ProjectList from './connected-components/ConnectedProjectList';
+import TaskList from './connected-components/ConnectedTaskList';
+import UrgentTaskList from './connected-components/ConnectedUrgentTaskList';
+import ProjectDetails from './connected-components/ConnectedProjectDetails';
+import TaskDetails from './connected-components/ConnectedTaskDetails';
 
 import './App.css';
 
