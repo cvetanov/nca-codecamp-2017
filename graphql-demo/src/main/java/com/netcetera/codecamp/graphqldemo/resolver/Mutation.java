@@ -79,9 +79,8 @@ public class Mutation implements GraphQLMutationResolver {
             projectToUpdate.setName(updatable.getName());
         }
         if(updatable.getDescription()!=null){
-            projectToUpdate.setName(updatable.getDescription());
+            projectToUpdate.setDescription(updatable.getDescription());
         }
-
 
         return projectService.save(projectToUpdate);
     }

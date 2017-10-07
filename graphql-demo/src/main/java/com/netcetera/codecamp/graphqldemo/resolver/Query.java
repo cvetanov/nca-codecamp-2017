@@ -1,6 +1,7 @@
 package com.netcetera.codecamp.graphqldemo.resolver;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import com.netcetera.codecamp.graphqldemo.enumeration.TaskStatus;
 import com.netcetera.codecamp.graphqldemo.service.ProjectService;
 import com.netcetera.codecamp.graphqldemo.service.TaskService;
 import com.netcetera.codecamp.graphqldemo.type.Project;
@@ -30,6 +31,8 @@ public class Query implements GraphQLQueryResolver {
     public List<Project> projects() {
         return projectService.getAll();
     }
+
+    public List<Task> linedUpTasks() {return taskService.getAllByStatus(TaskStatus.LINED_UP);}
 
     public Project project(Long id) { return projectService.getById(id); }
 }

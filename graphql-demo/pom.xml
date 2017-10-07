@@ -65,6 +65,7 @@
 			<artifactId>graphql-java-tools</artifactId>
 			<version>4.1.2</version>
 		</dependency>
+
 		<!-- End GraphQL dependencies -->
 	</dependencies>
 

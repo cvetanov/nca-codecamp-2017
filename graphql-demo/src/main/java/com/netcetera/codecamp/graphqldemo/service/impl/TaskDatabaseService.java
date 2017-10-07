@@ -2,6 +2,7 @@ package com.netcetera.codecamp.graphqldemo.service.impl;
 
 import com.netcetera.codecamp.graphqldemo.domain.ProjectEntity;
 import com.netcetera.codecamp.graphqldemo.domain.TaskEntity;
+import com.netcetera.codecamp.graphqldemo.enumeration.TaskStatus;
 import com.netcetera.codecamp.graphqldemo.mapper.TaskMapper;
 import com.netcetera.codecamp.graphqldemo.repository.ProjectRepository;
 import com.netcetera.codecamp.graphqldemo.repository.TaskRepository;
@@ -54,5 +55,10 @@ public class TaskDatabaseService implements TaskService {
     @Override
     public void deleteById(String id) {
 
+    }
+
+    @Override
+    public List<Task> getAllByStatus(TaskStatus taskStatus) {
+        return taskMapper.mapFromEntities(taskRepository.findByTaskStatus(taskStatus));
     }
 }

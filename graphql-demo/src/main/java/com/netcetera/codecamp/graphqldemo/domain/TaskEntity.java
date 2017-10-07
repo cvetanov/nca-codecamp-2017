@@ -2,8 +2,10 @@ package com.netcetera.codecamp.graphqldemo.domain;
 
 import com.netcetera.codecamp.graphqldemo.enumeration.Priority;
 import com.netcetera.codecamp.graphqldemo.enumeration.TaskStatus;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "TASK")
@@ -21,6 +23,8 @@ public class TaskEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TaskStatus taskStatus=TaskStatus.CREATED;
 
+    @Column
+    private Date dateScheduled;
 
     @ManyToOne
     @JoinColumn(name = "project_id")
@@ -64,6 +68,14 @@ public class TaskEntity extends BaseEntity {
 
     public void setTaskStatus(TaskStatus taskStatus) {
         this.taskStatus = taskStatus;
+    }
+
+    public Date getDateScheduled() {
+        return dateScheduled;
+    }
+
+    public void setDateScheduled(Date dateScheduled) {
+        this.dateScheduled = dateScheduled;
     }
 }
 

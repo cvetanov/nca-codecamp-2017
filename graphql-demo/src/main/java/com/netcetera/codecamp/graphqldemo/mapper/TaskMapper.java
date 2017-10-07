@@ -26,6 +26,7 @@ public class TaskMapper {
         taskEntity.setDescription(task.getDescription());
         taskEntity.setPriority(task.getPriority());
         taskEntity.setTaskStatus(task.getTaskStatus());
+        taskEntity.setDateScheduled(task.getDateScheduled());
         return taskEntity;
     }
 
@@ -45,7 +46,7 @@ public class TaskMapper {
         task.setDescription(taskEntity.getDescription());
         task.setPriority(taskEntity.getPriority());
         task.setTaskStatus(taskEntity.getTaskStatus());
+        task.setDateScheduled(taskEntity.getDateScheduled());
         return task;
     }
-
 }

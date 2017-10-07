@@ -41,8 +41,9 @@ input ProjectInput {
 
 type Query {
     projects: [Project]
+    tasks : [Task]
+    linedUpTasks: [Task]
     project(id: ID!): Project
-    tasks: [Task]
 }
 
 type Mutation {
@@ -51,6 +52,7 @@ type Mutation {
     addTaskToProject(task: TaskInput,projectId: Long): Project
     updateTask(updatable: TaskInputUpdatable) : Task
     updateProject(updatable: ProjectInputUpdatable) : Project
+
 }
 
 enum Priority{
