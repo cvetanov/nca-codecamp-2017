@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 
 import Form from '../components/Form';
 
-const addTask = gql`
+const addTaskMutation = gql`
     mutation addTask($name: String!, $description: String) {
         addTask(task: { name: $name, description: $description }) {
             name
@@ -13,7 +13,7 @@ const addTask = gql`
     }
 `;
 
-const TaskInput = (props) =>
+const TaskInput = ({ addTask }) =>
     <Form
         fields={[
             {
@@ -25,18 +25,11 @@ const TaskInput = (props) =>
                 value: '123'
             }
         ]}
-        onSubmit={formValues => {
-            props.addTask(formValues)
-        }}
+        onSubmit={addTask}
     />;
 
-export default graphql(addTask, {
+export default graphql(addTaskMutation, {
     props: ({ ownProps, mutate }) => ({
-        addTask: ({ name, description }) => {
-            console.log(mutate);
-            console.log(name);
-            console.log(description);
-            return mutate({ variables: { name, description } });
-        }
+        addTask: ({ name, description }) => mutate({ variables: { name, description } })
     })
 })(TaskInput);
