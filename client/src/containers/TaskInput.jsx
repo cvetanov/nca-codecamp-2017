@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
+import {FontIcon, RaisedButton} from "material-ui";
 
 import FancySelect from '../components/FancySelect';
 import {priorities, statuses} from '../enums/taskEnums';
+
 const emptyTask = {
     name: '',
     description: '',
@@ -20,6 +22,7 @@ export default class TaskInput extends Component {
         this.handleConfirm = this.handleConfirm.bind(this);
         this.handleChangeFromTextField = this.handleChangeFromTextField.bind(this);
         this.handleChangeFromSelect = this.handleChangeFromSelect.bind(this);
+        this.setDateScheduledToday = this.setDateScheduledToday.bind(this);
         this.changeValue = this.changeValue.bind(this);
         this.state = emptyTask;
         this.actions = [
@@ -50,6 +53,16 @@ export default class TaskInput extends Component {
     };
     handleChangeFromSelect = (name) => (event, index, value) => this.changeValue(name, value);
     handleChangeFromTextField = ({target: {name, value}}) => this.changeValue(name, value);
+    setDateScheduledToday = () => {
+        const today = new Date();
+
+        const day = today.getDate();
+        const adjustedDay = day < 10 ? `0${day}` : day;
+        const month = today.getMonth() + 1;
+        const year = today.getFullYear();
+        const dateString = `${adjustedDay}-${month}-${year}`;
+        this.changeValue('dateScheduled', dateString);
+    };
     changeValue = (name, value) => {
         this.setState(state => ({...state, [name]: value}));
     };
@@ -75,12 +88,21 @@ export default class TaskInput extends Component {
                     value={this.state.description}
                     onChange={this.handleChangeFromTextField}
                 />
-                <TextField
-                    name="dateScheduled"
-                    placeholder="dd-MM-yyyy (e.g. 31-12-2020)"
-                    value={this.state.dateScheduled}
-                    onChange={this.handleChangeFromTextField}
-                />
+                <div>
+                    <TextField
+                        name="dateScheduled"
+                        placeholder="dd-MM-yyyy (e.g. 31-12-2020)"
+                        value={this.state.dateScheduled}
+                        onChange={this.handleChangeFromTextField}
+                    />
+                    <RaisedButton
+                        label="Set to today"
+                        labelPosition="after"
+                        primary={true}
+                        onClick={this.setDateScheduledToday}
+                        icon={<FontIcon className="material-icons">schedule</FontIcon>}
+                    />
+                </div>
                 <FancySelect
                     name="priority"
                     value={this.state.priority}
