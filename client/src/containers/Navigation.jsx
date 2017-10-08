@@ -38,6 +38,7 @@ class Navigation extends Component {
                 <BottomNavigationItem
                     label="Projects"
                     icon={projectsIcon}
+                    disabled
                     onClick={this.changeNavigation(1, '/projects')}
                 />
                 <BottomNavigationItem
