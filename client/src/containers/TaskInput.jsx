@@ -57,7 +57,7 @@ export default class TaskInput extends Component {
     render() {
         return (
             <Dialog
-                title="Dialog With Actions"
+                title="Add task"
                 actions={this.actions}
                 modal={false}
                 open={this.props.open}
