@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 
-import TaskInput from '../containers/TaskInput';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
-// TODO gcvetano 2017-10-08: consider replacing with floating button
-import {RaisedButton} from "material-ui";
+import TaskInput from '../containers/TaskInput';
 
 const addTaskMutation = gql`
     mutation AddTaskMutation($name: String!, $description: String, $dateScheduled: String, $priority: Priority, $taskStatus: TaskStatus) {
@@ -15,6 +14,11 @@ const addTaskMutation = gql`
         }
     }
 `;
+
+const floatingButtonStyle = {
+    float: 'right',
+    margin: 10
+};
 
 class ConnectedTaskInput extends Component {
     constructor(props) {
@@ -31,11 +35,13 @@ class ConnectedTaskInput extends Component {
 
     render() {
         return [
-            <RaisedButton
+            <FloatingActionButton
                 key="add-task-button"
-                label="Add task"
+                style={floatingButtonStyle}
                 onClick={this.changeDialogOpen(true)}
-            />,
+            >
+                <ContentAdd />
+            </FloatingActionButton>,
             <TaskInput
                 key="add-task-dialog"
                 open={this.state.dialogOpen}
