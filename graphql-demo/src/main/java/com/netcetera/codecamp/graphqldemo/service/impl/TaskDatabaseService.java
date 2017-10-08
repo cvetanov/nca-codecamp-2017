@@ -44,6 +44,9 @@ public class TaskDatabaseService implements TaskService {
     @Override
     public Task save(Task task) {
 
+        if(!task.getDateScheduled().equals(Task.defaultDate)){
+            task.setTaskStatus(TaskStatus.SCHEDULED);
+        }
         final TaskEntity taskEntity = taskMapper.mapToEntity(task);
 
         ProjectEntity projectEntity = projectRepository.findOne(1L);

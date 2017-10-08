@@ -66,7 +66,10 @@
 			<version>4.1.2</version>
 		</dependency>
 
-		<!-- End GraphQL dependencies -->
+		<!-- End GraphQL depend encies -->
+		<!-- https://mvnrepository.com/artifact/oracle/ojdbc6 -->
+
+
 	</dependencies>
 
 	<build>
