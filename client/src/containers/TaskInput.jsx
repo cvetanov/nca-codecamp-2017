@@ -77,7 +77,7 @@ export default class TaskInput extends Component {
                 />
                 <TextField
                     name="dateScheduled"
-                    placeholder="dd-MM-yyyy (e.g. 31.12.2020)"
+                    placeholder="dd-MM-yyyy (e.g. 31-12-2020)"
                     value={this.state.dateScheduled}
                     onChange={this.handleChangeFromTextField}
                 />

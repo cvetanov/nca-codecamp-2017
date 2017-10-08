@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -13,12 +13,21 @@ const tasksQuery = gql`{
     }
 }`;
 
-const ConnectedTaskList = ({data}) => {
-    const {loading, tasks} = data;
-    if (loading) {
-        return <div>Loading tasks...</div>;
+class ConnectedTaskList extends Component {
+    componentDidMount() {
+        const {data: {refetch}} = this.props;
+        if (typeof refetch === 'function') {
+            refetch();
+        }
     }
-    return <TaskList tasks={tasks}/>
-};
+
+    render() {
+        const {data: {loading, tasks}} = this.props;
+        if (loading) {
+            return <div>Loading tasks...</div>;
+        }
+        return <TaskList tasks={tasks}/>
+    }
+}
 
 export default graphql(tasksQuery)(ConnectedTaskList);
