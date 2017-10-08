@@ -39,12 +39,14 @@ public class TaskDatabaseService implements TaskService {
 
     @Override
     public Task getById(Long id) {
-    return taskMapper.mapFromEntity(taskRepository.findOne(id)) ;}
+        final TaskEntity taskEntity = taskRepository.findOne(id);
+        return taskMapper.mapFromEntity(taskEntity);
+    }
 
     @Override
     public Task save(Task task) {
 
-        if(!task.getDateScheduled().equals(Task.defaultDate)){
+        if(!task.getDateScheduled().equals(Task.DEFAULT_DATE)){
             task.setTaskStatus(TaskStatus.SCHEDULED);
         }
         final TaskEntity taskEntity = taskMapper.mapToEntity(task);

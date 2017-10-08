@@ -1,6 +1,8 @@
 package com.netcetera.codecamp.graphqldemo.mapper;
 
+import com.netcetera.codecamp.graphqldemo.domain.ProjectEntity;
 import com.netcetera.codecamp.graphqldemo.domain.TaskEntity;
+import com.netcetera.codecamp.graphqldemo.type.Project;
 import com.netcetera.codecamp.graphqldemo.type.Task;
 import org.springframework.stereotype.Component;
 
@@ -57,6 +59,16 @@ public class TaskMapper {
         task.setTaskStatus(taskEntity.getTaskStatus());
         String date = simpleDateFormat.format(taskEntity.getDateScheduled());
         task.setDateScheduled(date);
+
+        // TODO gcvetano 2017-10-08: there already is a mapper, but qutowiring it will cause circular dependency
+        // find a way how to use it
+        final ProjectEntity projectEntity = taskEntity.getProject();
+
+        final Project project = new Project();
+        project.setName(projectEntity.getName());
+        project.setDescription(projectEntity.getDescription());
+        task.setProject(project);
+
         return task;
     }
 }

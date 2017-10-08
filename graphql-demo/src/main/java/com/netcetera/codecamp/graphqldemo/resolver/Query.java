@@ -38,7 +38,9 @@ public class Query implements GraphQLQueryResolver {
 
     public Project project(Long id) { return projectService.getById(id); }
 
-    public Task task(Long id) {return taskService.getById(id);}
+    public Task task(Long id) {
+        return taskService.getById(id);
+    }
 
     public List<Task> urgentTasks() {
         Date date = new Date();

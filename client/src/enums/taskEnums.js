@@ -17,6 +17,8 @@ const priorities = [
     }
 ];
 
+const prioritiesLookup = priorities.reduce((acc, curr) => ({ ...acc, [curr.value]: curr.text}), {});
+
 const statuses = [
     {
         value: 'CREATED',
@@ -40,7 +42,11 @@ const statuses = [
     }
 ];
 
+const statusesLookup = statuses.reduce((acc, curr) => ({ ...acc, [curr.value]: curr.text}), {});
+
 export {
     priorities,
-    statuses
+    prioritiesLookup,
+    statuses,
+    statusesLookup
 }

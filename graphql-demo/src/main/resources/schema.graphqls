@@ -4,7 +4,8 @@ type Task {
     description: String
     priority: Priority
     taskStatus: TaskStatus
-    dateScheduled: String
+    dateScheduled: String,
+    project: Project
 }
 
 type Project {

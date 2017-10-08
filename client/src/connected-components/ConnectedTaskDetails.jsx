@@ -2,7 +2,7 @@ import React from 'react';
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 
-import Task from '../components/Task';
+import TaskDetails from '../components/TaskDetails';
 
 const taskQuery = gql`
     query TaskQuery($id: ID!) {
@@ -10,21 +10,31 @@ const taskQuery = gql`
             id,
             name,
             description,
-            priority
+            dateScheduled,
+            priority,
+            taskStatus,
+            project {
+                name,
+                description
+            }
         }
     }
 `;
 
-const ConnectedTaskDetails = ({data: {loading, task}}) => {
+const ConnectedTaskDetails = (props) => {
+    const {data: {loading, task}} = props;
     if (loading) {
         return <div>Task data is loading...</div>
     }
     return (
-        <Task
+        <TaskDetails
             id={task.id}
             name={task.name}
             description={task.description}
+            dateScheduled={task.dateScheduled}
             priority={task.priority}
+            status={task.taskStatus}
+            project={task.project}
         />
     );
 };
