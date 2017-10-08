@@ -5,6 +5,13 @@ import TextField from 'material-ui/TextField';
 
 import FancySelect from '../components/FancySelect';
 import {priorities, statuses} from '../enums/taskEnums';
+const emptyTask = {
+    name: '',
+    description: '',
+    dateScheduled: '',
+    priority: '',
+    taskStatus: ''
+};
 
 export default class TaskInput extends Component {
     constructor(props) {
@@ -14,13 +21,7 @@ export default class TaskInput extends Component {
         this.handleChangeFromTextField = this.handleChangeFromTextField.bind(this);
         this.handleChangeFromSelect = this.handleChangeFromSelect.bind(this);
         this.changeValue = this.changeValue.bind(this);
-        this.state = {
-            name: '',
-            description: '',
-            dateScheduled: '',
-            priority: '',
-            taskStatus: ''
-        };
+        this.state = emptyTask;
         this.actions = [
             <FlatButton
                 label="Cancel"
@@ -34,6 +35,13 @@ export default class TaskInput extends Component {
                 onClick={this.handleConfirm}
             />,
         ];
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!this.props.open && nextProps.open) {
+            const updatedState = nextProps.task || emptyTask;
+            this.setState(updatedState);
+        }
     }
 
     handleCancel = this.props.onCancel;
