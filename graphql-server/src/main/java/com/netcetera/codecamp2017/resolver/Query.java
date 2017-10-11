@@ -20,10 +20,9 @@ public class Query implements GraphQLQueryResolver {
     private ProjectService projectService;
 
     @Autowired
-    public Query(TaskService taskService,ProjectService projectService)
-    {
+    public Query(TaskService taskService, ProjectService projectService) {
         this.taskService = taskService;
-        this.projectService= projectService;
+        this.projectService = projectService;
     }
 
     public List<Task> tasks() {
@@ -34,9 +33,13 @@ public class Query implements GraphQLQueryResolver {
         return projectService.getAll();
     }
 
-    public List<Task> linedUpTasks() {return taskService.getAllByStatus(TaskStatus.LINED_UP);}
+    public List<Task> linedUpTasks() {
+        return taskService.getAllByStatus(TaskStatus.LINED_UP);
+    }
 
-    public Project project(Long id) { return projectService.getById(id); }
+    public Project project(Long id) {
+        return projectService.getById(id);
+    }
 
     public Task task(Long id) {
         return taskService.getById(id);
@@ -46,10 +49,10 @@ public class Query implements GraphQLQueryResolver {
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.set(Calendar.HOUR_OF_DAY,0);
-        calendar.set(Calendar.MINUTE,0);
-        calendar.set(Calendar.SECOND,0);
-        calendar.set(Calendar.MILLISECOND,0);
-       return taskService.getAllByDateScheduled(calendar.getTime());
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return taskService.getAllByDateScheduled(calendar.getTime());
     }
 }

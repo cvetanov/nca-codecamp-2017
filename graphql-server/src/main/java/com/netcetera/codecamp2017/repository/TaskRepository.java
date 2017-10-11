@@ -11,5 +11,6 @@ import java.util.List;
 @Repository
 public interface TaskRepository extends JpaRepository<TaskEntity, Long> {
     List<TaskEntity> findByTaskStatus(TaskStatus taskStatus);
+
     List<TaskEntity> findAllByDateScheduled(Date date);
 }

@@ -24,10 +24,10 @@ public class TaskDatabaseService implements TaskService {
     private ProjectRepository projectRepository;
 
     @Autowired
-    public TaskDatabaseService(TaskMapper taskMapper, TaskRepository taskRepository,ProjectRepository projectRepository) {
+    public TaskDatabaseService(TaskMapper taskMapper, TaskRepository taskRepository, ProjectRepository projectRepository) {
         this.taskMapper = taskMapper;
         this.taskRepository = taskRepository;
-        this.projectRepository=projectRepository;
+        this.projectRepository = projectRepository;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class TaskDatabaseService implements TaskService {
     @Override
     public Task save(Task task) {
 
-        if(!task.getDateScheduled().equals(Task.DEFAULT_DATE)){
+        if (!task.getDateScheduled().equals(Task.DEFAULT_DATE)) {
             task.setTaskStatus(TaskStatus.SCHEDULED);
         }
         final TaskEntity taskEntity = taskMapper.mapToEntity(task);

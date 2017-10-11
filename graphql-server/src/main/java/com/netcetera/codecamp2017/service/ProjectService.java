@@ -12,6 +12,4 @@ public interface ProjectService {
     Project save(Project task);
 
     void deleteById(String id);
-
-
 }

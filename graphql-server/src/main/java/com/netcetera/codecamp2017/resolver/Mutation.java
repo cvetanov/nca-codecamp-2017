@@ -24,6 +24,7 @@ public class Mutation implements GraphQLMutationResolver {
 
     /**
      * Adds a new task in the persistence.
+     *
      * @param task the task to be added
      * @return the added task.
      */
@@ -33,6 +34,7 @@ public class Mutation implements GraphQLMutationResolver {
 
     /**
      * Adds a new project in the persistence.
+     *
      * @param project the project to be added
      * @return the added project.
      */
@@ -42,41 +44,41 @@ public class Mutation implements GraphQLMutationResolver {
 
     /**
      * Adds a task to a project.
-     * @param task the task to be added.
+     *
+     * @param task      the task to be added.
      * @param projectId the id of the project to which the task belongs.
      * @return the project.
      */
-    public Project addTaskToProject(Task task, Long projectId){
-//        taskService.save(task);
+    public Project addTaskToProject(Task task, Long projectId) {
         Project project = projectService.getById(projectId);
         project.getTasks().add(task);
         return projectService.save(project);
     }
 
-    public Task updateTask(Task updatable){
+    public Task updateTask(Task updatable) {
         Task taskToUpdate = taskService.getById(updatable.getId());
-        if(updatable.getName()!=null){
+        if (updatable.getName() != null) {
             taskToUpdate.setName(updatable.getName());
         }
-        if(updatable.getDescription() != null){
+        if (updatable.getDescription() != null) {
             taskToUpdate.setDescription(updatable.getDescription());
         }
-        if(updatable.getPriority() != null){
+        if (updatable.getPriority() != null) {
             taskToUpdate.setPriority(updatable.getPriority());
         }
-        if(updatable.getTaskStatus() !=null){
+        if (updatable.getTaskStatus() != null) {
             taskToUpdate.setTaskStatus(updatable.getTaskStatus());
         }
 
         return taskService.save(taskToUpdate);
     }
 
-    public Project updateProject(Project updatable){
+    public Project updateProject(Project updatable) {
         Project projectToUpdate = projectService.getById(updatable.getId());
-        if(updatable.getName()!= null){
+        if (updatable.getName() != null) {
             projectToUpdate.setName(updatable.getName());
         }
-        if(updatable.getDescription()!=null){
+        if (updatable.getDescription() != null) {
             projectToUpdate.setDescription(updatable.getDescription());
         }
 

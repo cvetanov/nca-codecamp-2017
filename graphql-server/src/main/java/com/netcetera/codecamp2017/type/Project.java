@@ -7,7 +7,7 @@ public class Project extends BaseType {
 
     private String name;
     private String description;
-    private List<Task> tasks=new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
 
     public String getName() {
         return name;

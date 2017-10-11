@@ -9,8 +9,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class StartupRunner implements CommandLineRunner {
 
+    private final ProjectRepository projectRepository;
+
     @Autowired
-    private ProjectRepository projectRepository;
+    public StartupRunner(ProjectRepository projectRepository) {
+        this.projectRepository = projectRepository;
+    }
 
     @Override
     public void run(String... strings) throws Exception {
