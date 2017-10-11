@@ -6,6 +6,7 @@ import { ApolloProvider } from 'react-apollo';
 
 import './index.css';
 import App from './App';
+import ErrorBoundary from './components/ErrorBoundary';
 
 const networkInterface = createNetworkInterface({
   uri: 'http://localhost:8080/graphql'
@@ -13,13 +14,15 @@ const networkInterface = createNetworkInterface({
 const client = new ApolloClient({ networkInterface });
 
 const Container = () => (
-  <MuiThemeProvider>
-    <Router>
-      <ApolloProvider client={client}>
-        <App/>
-      </ApolloProvider>
-    </Router>
-  </MuiThemeProvider>
+  <ErrorBoundary>
+    <MuiThemeProvider>
+      <Router>
+        <ApolloProvider client={client}>
+          <App/>
+        </ApolloProvider>
+      </Router>
+    </MuiThemeProvider>
+  </ErrorBoundary>
 );
 
 export default Container;
